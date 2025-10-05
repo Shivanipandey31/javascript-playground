@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            height: 90px;
+            width: 90px;
+            background-color: aquamarine;
+            color: black;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- <button onclick="console.log('Button was clicked'); alert('hello')">clickme</button> -->
+    <button id="btn1">btn1</button>
+    <button ondblclick="console.log('Button was clicked 2'); alert('hello22')">clickme twice</button>
+    <div class="div1">
+        This is a div
+    </div>
+
+    <script>
+        let btn1=document.querySelector("#btn1");
+        // btn1.onclick=(evt) => {
+        //     // console.log("btn 1 was clicked");
+        //     // let a=25;
+        //     // a++;
+        //     // console.log(a);
+        //     console.log(evt);
+        //     console.log(evt.type);
+
+        // };
+
+        btn1.addEventListener("dblclick",()=>{
+            console.log("btn was clicked-handler1");
+        })
+        btn1.addEventListener("dblclick",()=>{
+            console.log("btn was clicked-handler2");
+        })
+        const Handler3=()=>{
+            console.log("btn was clicked-handler3");
+        }
+        btn1.addEventListener("dblclick",Handler3);
+        btn1.addEventListener("dblclick",()=>{
+            console.log("btn was clicked-handler4");
+        })
+        btn1.removeEventListener("dblclick",Handler3);//Handler3 is a callback
+
+
+        
+        // let box=document.querySelector("div");
+        // box.onmouseover=(evt)=>{
+        //     console.log("mouse on div");
+        //     console.log(evt);
+        //     console.log(evt.type);
+        // };
+
+    </script>
+
+</body>
+</html>

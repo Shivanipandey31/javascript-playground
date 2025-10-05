@@ -1,0 +1,19 @@
+{
+    "title": "AJAX with JSON Example",
+    "description": "This is an exmaple of loading JSON data using Ajax.",
+    "items": [
+        {
+            "name": "Item 1",
+            "value": "Value 1"
+        },
+        {
+            "name": "Item 2",
+            "value": "Value 2"
+        },
+        {
+            "name": "Item 3",
+            "value": "Value 3"
+        }
+    ]
+}
+       

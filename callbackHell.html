@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function getData(dataId){
+        //     setTimeout(()=>{
+        //         console.log("data",dataId);
+        //     },2000);
+        // }
+
+        // when we want to have some timeintervals 
+        function getData(dataId, getNextData){
+            setTimeout(()=>{
+                console.log("data",dataId);
+                if(getNextData){
+                    getNextData();
+                }
+            },2000);
+        }
+        getData(1,()=>{ 
+            getData(2,()=>{
+                getData(3);
+            });
+        });
+        //this is called callback hell,because this code is not understandable, & to overcome this we use PROMISES
+    </script>
+</body>
+</html>

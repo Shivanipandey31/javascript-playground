@@ -1,0 +1,59 @@
+<!-- Make a rectangle & when we move mouse on that rectangle on the left side we want to gradually
+change the color of that rect. to red when we move mouse to the right side we want to change the
+ color to blue. -->
+<!-- step1--Firstly find that wheather the mouse came over the rectangle and hovered or not.
+step 2--now calculate that wheather the mouse is present on the right side from center of
+         rect. or to the left.
+step 3-- now calculate the distance b/w the mouse and and the center of rec.
+ (more the distance ,more should be the intensity of color) -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:'Gilroy';
+        }
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        #center{
+            width: 300px;
+            height: 200px;
+            border: 1px solid black ;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+    </style>
+ </head>
+ <body>
+    <div id="center"></div>
+    <script>
+        let rect=document.querySelector("#center");
+        rect.addEventListener("mousemove",function(details){
+            // console.log(rect.getBoundingClientRect());
+            var rectLocation=rect.getBoundingClientRect();
+            // getBoundingClientRect() method returns a DOMRect object providing information about the size and position 
+            // of the element rect relative to the viewport (the visible area of the web page).
+            // rectLocation.left: This property of the DOMRect object represents the distance from the left edge of the viewport to the left edge of the rect element. Essentially, it gives the x-coordinate of the rect element's left edge in relation to the viewport.
+            let insiderectVal=details.clientX-rectLocation.left;
+            if(insiderectVal<rectLocation.width/2){
+                /////GSAP WAS USED(SHERYIANS CODING SCHOOL)
+            }
+            else{
+                
+            }
+        });
+    </script>
+ </body>
+ </html>

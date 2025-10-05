@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Hello World
+    <div id='dogImage'><img src="" alt=""></div>
+    <button id="newDog">get new dog</button>
+    <script>
+        
+        const dogImageDiv=document.getElementById('dogImage')
+        const newDog=document.getElementById('newDog')
+
+        //stuff you have to wait for
+        const getNewDog=()=>{
+        fetch('https://dog.ceo/api/breeds/image/random')// Fetch a random dog image from the Dog CEO API
+        .then(response => response.json()) // Convert the response to JSON format
+        .then(json=>{console.log(json.message)        // Log the URL of the dog image to the console
+            dogImageDiv.innerHTML=`<img src="${json.message}"
+            height=300 width=300/>`
+            // Set the innerHTML of the div to include an img tag with the dog image
+        // The image is displayed with a height and width of 300 pixels
+        })
+    }
+        newDog.onclick=()=> getNewDog()
+    </script>
+</body>
+</html>

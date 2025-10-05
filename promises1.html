@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   hello world
+    
+    <scipt>
+        const promise1=new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                isReady=true
+                isReady? resolve('soup is ready'):reject('not ready')
+            },5000)
+        })
+        console.log(
+            promise1
+            .then(success=>console.log({success}))
+            .catch(error=>sonsole.log({error}))
+            )
+    </scipt>
+</body>
+</html>

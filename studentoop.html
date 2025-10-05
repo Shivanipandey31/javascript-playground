@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let DATA="secret information";
+        class User{
+            constructor(name,email){
+                this.name=name;
+                this.email=email;
+            }
+            viewData(){
+                console.log("data=" ,DATA);
+            }
+        }
+        class Admin extends User{
+            constructor(name,email){
+                super(name,email);
+            }
+            editData(){
+                DATA="new information";
+            }
+        }
+        let student1=new User("shivani" , "shivani@gmail.com");
+        let admin1=new Admin("admin","admin@gmail.com");
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Fetch API example with Async/Await</h1>
+    <div id="data-container"></div>
+    <script>
+        //function to fetch data from an API
+        async function fetchData(){
+            //url of the API endpoint
+            const apiUrl='https://jsonplaceholder.typicode.com/posts/1';
+
+            try{
+                //use the fetch() function to make a request to the API
+                const response =await fetch(apiUrl);
+                //check if the response is OK (status code 200-299)
+                if (!response.ok){
+                    throw new Error('Network was not OK!' + response.statusText);
+                }
+                //We get data in raw form from APIs ,and we convert that data into Object form+++++++++++++++++++++
+                //parse the JSON(JavaScript Object Notation) from the response
+                const data=await response.json();
+
+                //handle the json data
+                console.log(data);
+
+                //display the data on the webpage
+                const dataContainer=document.getElementById('data-container');
+                dataContainer.innerHTML=
+                `<h2>${data.title}</h2>
+                <p>${data.body}</p>
+                <p>${data.id}</p>
+                <p>${data.body}</p>`;
+                }
+                catch (error){
+                    //handle any errors that occured during the fetch
+                    console.error('There was a problem with the fetch operation:' ,error);
+                }
+            }
+            //call the fetchData function to make the request
+            fetchData();
+
+    </script>
+</body>
+</html>

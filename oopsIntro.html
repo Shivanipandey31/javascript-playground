@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+    <script>
+        const employee={
+            calcTax(){
+                console.log("tax rate is 10%");
+            },
+        };
+
+        const newEmp={
+            salary:50000,
+        };
+
+        newEmp.__proto__=employee;
+
+
+        class Person{
+            constructor(name){
+                console.log("enter Parent constructor");
+                this.species="homo sapiens";
+                this.name=name;
+                console.log("exit Parent constructor");
+            }
+            eat(){
+                console.log("eat");
+            }
+        }
+        class Engineer extends Person{
+            constructor(name){
+                console.log("enter child constructor");
+                super(name); //necessary to write super() to invoke the parent class constructor,if we remove this line we will get error
+                this.branch=branch;
+                console.log("exit child constructor");
+            }
+            work(){
+                super.eat(); // here we wanted to display eat before work so we used super keyword to access parent class method 
+                console.log("solve problems, build something");
+            }
+        }
+        let engObj=new Engineer(Shivani);
+    </script>
+</body>
+</html>

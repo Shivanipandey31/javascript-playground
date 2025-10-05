@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>hello world</p>
+    <p id="demo"></p>
+    <input type="button" value="click me" onclick="f1()">
+    <img src="icon.jpg" ondblclick="f1()">
+    <input type="button" onmouseover="f1()">
+</body>
+    <script type="text/javascript">
+        function myFunction(){
+            return Math.PI;
+        }
+        document.getElementById("demo").innerHTML=myFunction()
+
+        let x=myFunction(4,3);
+        document.getElementById("demo").innerHTML=x;
+
+        function myFunction(a,b){
+            return a*b;
+        }
+
+        function toCelsius(f){
+            return (5/9)*(f-32);
+        }
+        let text="the temperature is "+toCelsius(77)+" Celsius";
+        document.getElementById("demo").innerHTML=text;
+        let myFunction=(a,b)=>a*b;
+        document.getElementById("demo").innerHTML=myFunction(4,5)
+        let hello="";
+        hello=function(){
+            return "Helooooo"
+        }
+        hello=()=>{
+            return "Namaste JavaScript";
+        }
+        document.getElementById("demo").innerHTML=hello()
+
+        hello=(val)=>"Hello" +val;
+        document.getElementById("demo").innerHTML=hello("Universe");
+
+
+        // EVENTS
+
+        function f1(){
+            alert("button click event")
+        }
+        function f1(){
+            alert("double click event");
+        }
+        function f1(){
+            alert("mouse hover event");
+        }
+            var nums=[2,5,8, ,1,9];
+            // alert(nums.length);
+            for(var i=0;i<nums.length;i++){
+                document.write(nums[i]+"<br>");
+            }
+            for(var i in nums){
+                document.write(nums[i]+"<br>");
+           }
+           var nums=[2,15,26,30,12];
+           alert("Array length now is "+nums.length);
+           for(var i=0;i<nums.length;i++)
+                document.write(nums[i]+"<br>");
+        
+
+    //write a javascript code to accept an integer from the user and store all the prime nos up to that number in an array which should be dynamically sized .finally print the elements of the array
+    var arr=[]
+    let number=parseInt(prompt("enter the number"));
+    for( var i=2;i<n;i++){
+        if(i%j==0)
+        break;
+    }
+    if(i==j){
+    document.write(arr[i]+"<br>");
+}
+var arr=[71,12,34,24,52];
+for(var i=0;i<arr.length;i++)
+    document.write(arr[i]+" ");
+document.write("<br>");
+arr.sort()
+
+//TIMEOUT IN JAVASCRIPT
+function x(){
+    var i=1;
+    setTimeout(function (){
+        console.log(i);
+    },3000);
+    console.log("hellooooooooo");
+}
+x();
+    
+    </script>
+</html>

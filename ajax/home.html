@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+    <div id="content">
+        <h1>this is the homepage content</h1>
+        <button onclick()="loadAbouContent()">Load about content</button>
+        
+    </div>
+
+    <script>
+        // Function to load content from 'about.html' into the element with ID 'content'
+        function loadAboutContent(){
+            // Create a new XMLHttpRequest object
+            const xhr=new XMLHttpRequest();
+            xhr.open('GET','about.html');  //initialize a get request to about.html
+            xhr.onload=function(){
+                if(this.status===200){
+                    //200 status code=network established
+                    document.getElementById('content').innerHTML=this.responseText;//responseText-builtin word that contains response of the url/file
+                    }
+                else{
+                    console.error('Failed to load content:',this.status);
+                }
+            };
+            xhr.onerror=function(){
+                console.error('request error');
+            };
+            //xhr.send(); //send is used when we use post method
+            
+        }
+    </script>
+</body>
+</html>

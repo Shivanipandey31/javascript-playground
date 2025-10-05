@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Random user data</h1>
+    <div id="user-container"></div>
+    <script>
+        // API=Application Program Interface
+        async function fetchUserData(){
+            const apiUrl='https://randomuser.me/api/';
+            try{
+                const response=await fetch(apiUrl);
+                if(!response.ok){
+                    throw new Error('Network response was not ok'+response.statusText);
+                }
+                const data=await response.json();
+                const user =data.results[0];
+                console.log(user);
+                const userContainer =document.getElementById('user-container');
+                userContainer.innerHTML=`
+                <h2>${user.name.title} ${user.name.first} ${user.name.last};</h2>
+                <p>Email: ${user.email}</p>
+                <p>Location: ${user.location.city}, ${user.location.country}</p>
+                <img src="${user.picture.large}" alt="User Image">
+                `;
+        }
+                catch(error){
+                    console.error('There was a problem with the fetch operation:' ,error);
+                }
+        }
+        fetchUserData();
+
+    </script>
+    <button onclick="fetchUserData()">get Data</button>
+
+</body>
+</html>

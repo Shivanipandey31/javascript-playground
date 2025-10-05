@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    *{
+    margin: 0;
+    padding: 0;
+}
+
+
+  </style>
+</head>
+
+<body>
+    <h2>🌟 Super Hero App</h2>
+    <p>You can search for a super hero like "batman" or "thanos" or... You can generate a random hero</p>
+    <input id='searchInput' type="text">
+    <button id='searchButton'>Search</button>
+    <button id='newHeroButton'>Random Hero</button>
+  
+  </br>
+  <script>
+    // API token and base URL for making requests to the Superhero API
+const SUPERHERO_TOKEN = '2c8f53cdf0c3f5ec2c589fe39e2ca527';
+const BASE_URL = `https://superheroapi.com/api.php/${SUPERHERO_TOKEN}`;
+
+const newHeroButton = document.getElementById('newHeroButton');
+const heroImageDiv = document.getElementById('heroImage');
+const searchButton = document.getElementById('searchButton');
+const searchInput = document.getElementById('searchInput');
+
+// Function to fetch superhero data by ID and display it
+const getSuperHero = (id) => {
+  fetch(`${BASE_URL}/${id}`) // Fetch superhero data using the given ID
+    .then(response => response.json()) // Convert the response to JSON format
+    .then(json => {
+      console.log(json.powerstats); // Log the superhero's power stats for debugging
+      const superHero = json; // Store the fetched superhero data
+      showHeroInfo(superHero); // Call the function to display the superhero information on the page
+    });
+};
+
+// Object mapping power stats to their corresponding emoji representations
+const statToEmoji = {
+  intelligence: '🧠', 
+  strength: '💪', 
+  speed: '⚡',
+  durability: '🏋️‍♂️', 
+  power: '📊', 
+  combat: '⚔️', 
+};
+
+// Function to display the superhero's name, image, and power stats on the webpage
+const showHeroInfo = (character) => {
+  const name = `<h2>${character.name}</h2>`; // Create an HTML string for the superhero's name
+  const img = `<img src="${character.image.url}" height=200 width=200/>`; // Create an HTML string for the superhero's image
+  
+  // Generate HTML for each power stat, using emojis for visual representation
+  const stats = Object.keys(character.powerstats).map(stat => {
+    return `<p>${statToEmoji[stat]} ${stat.toUpperCase()}: ${character.powerstats[stat]}</p>`;
+}).join(''); // Combine all the stat HTML strings into a single string
+
+
+//BREAK DOWN OF ABOVE RETURN STATEMENT->>>>>>>>>>
+// ${statToEmoji[stat]}:
+
+// statToEmoji is an object that maps power stat names (like intelligence, strength, etc.) to emojis.
+// stat is the current key in the character.powerstats object (e.g., intelligence).
+// statToEmoji[stat] retrieves the corresponding emoji from the statToEmoji object for the current stat.
+// For example, if stat is "intelligence", statToEmoji[stat] will be "🧠".
+// ${stat.toUpperCase()}:
+
+// stat is the current key in the character.powerstats object.
+// stat.toUpperCase() converts the stat name (which is typically in lowercase) to uppercase.
+// For example, if stat is "intelligence", stat.toUpperCase() will produce "INTELLIGENCE".
+// ${character.powerstats[stat]}:
+
+// character.powerstats is an object that contains the power stats for the current superhero.
+// stat is the key for the specific stat being processed in this iteration.
+// character.powerstats[stat] retrieves the value associated with the current stat.
+// For example, if stat is "intelligence", character.powerstats[stat] might return a value like 100 (indicating the intelligence level).
+
+
+  
+  heroImageDiv.innerHTML = `${name}${img}${stats}`; // Update the webpage with the superhero's info
+};
+
+// Function to fetch superhero data by name and display it
+const getSearchSuperHero = (name) => {
+  console.log(searchInput.value); // Log the search input for debugging
+  fetch(`${BASE_URL}/search/${name}`) // Fetch superhero data by the given name
+    .then(response => response.json()) // Convert the response to JSON format
+    .then(json => {
+      const hero = json.results[0]; // Get the first result from the search results
+      showHeroInfo(hero); // Call the function to display the superhero information on the page
+    });
+};
+
+// Function to generate a random superhero ID within the valid range
+const randomHero = () => {
+  const numberOfHeroes = 731; // Define the total number of superheroes available in the API
+  return Math.floor(Math.random() * numberOfHeroes) + 1; // Generate a random ID between 1 and 731
+};
+
+// Event listener for the "Random Hero" button; fetches and displays a random superhero
+newHeroButton.onclick = () => getSuperHero(randomHero());
+
+// Event listener for the "Search" button; fetches and displays a superhero by name
+searchButton.onclick = () => getSearchSuperHero(searchInput.value);
+
+
+  </script>
+</body>
+
+</html>
